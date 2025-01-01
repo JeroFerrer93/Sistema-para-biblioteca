@@ -24,10 +24,13 @@ def main():
         opcion = input("Elige una opción: ")
 
         if opcion == "1":
-            id_usuario = int(input("Ingresa tu ID de usuario: "))
-            titulo_libro = input("Escribe el título del libro que deseas tomar prestado: ")
+            id_usuario = input("Ingresa tu ID de usuario (debe ser un número): ")
+            if not id_usuario.isdigit():
+                print("El ID debe ser un número. Intenta de nuevo.")
+                continue
+            id_usuario = int(id_usuario)
 
-            # Buscar el libro por título
+            titulo_libro = input("Escribe el título del libro que deseas tomar prestado: ")
             libro = next((l for l in biblioteca.libros if l.titulo.lower() == titulo_libro.lower()), None)
             if libro:
                 biblioteca.prestar_libro(id_usuario, libro.isbn)
@@ -40,7 +43,12 @@ def main():
             biblioteca.consultar_estado_libro(isbn)
         
         elif opcion == "3":
-            id_usuario = int(input("Ingresa tu ID de usuario: "))
+            id_usuario = input("Ingresa tu ID de usuario (debe ser un número): ")
+            if not id_usuario.isdigit():
+                print("El ID debe ser un número. Intenta de nuevo.")
+                continue
+            id_usuario = int(id_usuario)
+
             isbn = input("Ingresa el ISBN del libro que deseas devolver: ")
             biblioteca.devolver_libro(id_usuario, isbn)
         
@@ -48,12 +56,20 @@ def main():
             titulo = input("Título del libro: ")
             autor = input("Autor del libro: ")
             isbn = input("ISBN del libro: ")
-            copias = int(input("Cantidad de copias disponibles: "))
+            copias = input("Cantidad de copias disponibles (debe ser un número): ")
+            if not copias.isdigit():
+                print("La cantidad de copias debe ser un número. Intenta de nuevo.")
+                continue
+            copias = int(copias)
             biblioteca.registrar_libro(titulo, autor, isbn, copias)
         
         elif opcion == "5":
             nombre = input("Nombre del usuario: ")
-            id_usuario = int(input("ID del usuario: "))
+            id_usuario = input("ID del usuario (debe ser un número): ")
+            if not id_usuario.isdigit():
+                print("El ID debe ser un número. Intenta de nuevo.")
+                continue
+            id_usuario = int(id_usuario)
             biblioteca.registrar_usuario(nombre, id_usuario)
         
         elif opcion == "6":
@@ -62,6 +78,3 @@ def main():
         
         else:
             print("Opción no válida. Intenta de nuevo.")
-
-if __name__ == "__main__":
-    main()
