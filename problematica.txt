@@ -1,0 +1,8 @@
+Modernizar sistema de gestion de la biblioteca.
+ Debe Registrar:
+ -Libros
+ -Usuarios
+ -Realizar Prestamos
+ -Devoluciones
+ -Estado de los Libros
+ 
